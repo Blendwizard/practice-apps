@@ -10,7 +10,6 @@ mongoose.connect('mongodb://localhost:27017/fetcher', (err) => {
 });
 // 2. Set up any schema and models needed by the app
 var schema = new mongoose.Schema({
-  id: {type: Number, unique: true},
   word: String,
   definition: String
 });
@@ -19,7 +18,6 @@ var Word = mongoose.model("Word", schema);
 
 const save = (wordObj) => {
   var wordDoc = new Word({
-    id: wordObj.id,
     word: wordObj.word,
     definition: wordObj.definition
   });

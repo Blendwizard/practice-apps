@@ -29,6 +29,7 @@ class App extends React.Component {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(wordBody)
     })
+    .then(this.fetchWords())
   }
 
   editItem(word, newDefinition) {

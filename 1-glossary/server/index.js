@@ -24,10 +24,11 @@ app.post('/words', (req, res) => {
   // console.log(req.body);
 
   database.save(req.body);
+
 })
 
 app.get('/words', (req, res) => {
-  console.log("Attmpting to fetch all words in database...")
+  console.log("Attempting to fetch all words in database...")
   database.retrieveWords((err, success) => {
     if (err) {
       res.status(404).send(err);
@@ -38,7 +39,8 @@ app.get('/words', (req, res) => {
 })
 
 app.patch('/words', (req, res) => {
-  console.log("Made it to patch::::", req.body)
+
+  console.log(`Updating the word::: ${req.body.word} ::: with: ${req.body.definition}`);
   var newDefinition = req.body.definition;
   var word = req.body.word;
 
