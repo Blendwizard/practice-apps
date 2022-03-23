@@ -12,9 +12,10 @@ class WordItems extends React.Component {
   editClick() {
 
     var updatedDefinition = prompt('Add your new definition');
-    var id = this.props.word.id;
+    // var id = this.props.word.id;
+    var word = this.props.word.word;
 
-    this.props.editItem(id, updatedDefinition);
+    this.props.editItem(word, updatedDefinition);
   }
 
   render() {
