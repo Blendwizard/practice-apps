@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import wordCollection from "./testData.js";
+import WordList from './components/WordList.jsx'
 
 
 class App extends React.Component {
@@ -11,10 +13,12 @@ class App extends React.Component {
     };
   }
 
+
   render() {
     return (
       <div>
         <h1>GlossaryApp</h1>
+        <WordList wordCollection={wordCollection}/>
       </div>
     )
   }
