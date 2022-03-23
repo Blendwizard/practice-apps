@@ -1,13 +1,15 @@
 import React from 'react';
+import WordItems from './WordItems.jsx';
 
 
 const WordList = (props) => {
 
+
   return (
     <div>
       <ul>
-        {props.wordCollection.map((word) => {
-          return <WordItems/>;
+        {props.wordList.map((words) => {
+          return <WordItems word={words} editItem={props.editItem}/>
         })}
       </ul>
     </div>

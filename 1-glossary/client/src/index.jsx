@@ -9,16 +9,20 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-
+      listOfWords: wordCollection
     };
   }
 
+
+  editItem(wordId, newDefinition) {
+    console.log(`Getting ID: ${wordId} and new definition: ${newDefinition}`);
+  }
 
   render() {
     return (
       <div>
         <h1>GlossaryApp</h1>
-        <WordList wordCollection={wordCollection}/>
+        <WordList wordList={this.state.listOfWords} editItem={this.editItem.bind(this)}/>
       </div>
     )
   }
