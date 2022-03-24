@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import wordCollection from "./testData.js";
 import WordList from './components/WordList.jsx'
 import AddWords from './components/AddWords.jsx';
+import SearchWords from './components/SearchWords.jsx';
 
 
 class App extends React.Component {
@@ -20,6 +21,16 @@ class App extends React.Component {
 
 
 // :::::::::::::::: FUNCTIONS ::::::::::::::::
+
+
+  searchForWord(query) {
+    fetch(`http://localhost:3000/words/search?term=${query}`)
+    .then(res => res.json())
+    .then(
+      (results) => {
+      this.setState({listOfWords: results});
+    })
+  }
 
   deleteWord(word) {
     var wordBody = {word};
@@ -73,6 +84,7 @@ class App extends React.Component {
       <div>
         <h1>GlossaryApp</h1>
         <AddWords addWord={this.addWord.bind(this)}/>
+        <SearchWords searchForWord={this.searchForWord.bind(this)}/>
         <WordList wordList={this.state.listOfWords} editItem={this.editItem.bind(this)} deleteWord={this.deleteWord.bind(this)}/>
       </div>
     )

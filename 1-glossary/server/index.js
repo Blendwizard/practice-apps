@@ -40,6 +40,19 @@ app.get('/words', (req, res) => {
   });
 })
 
+app.get('/words/search', (req, res) => {
+  var query = req.query.term;
+
+  database.searchFor(query, (err, results) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.status(200).send(results);
+    }
+  })
+
+})
+
 app.patch('/words', (req, res) => {
 
   console.log(`Updating the word::: ${req.body.word} ::: with: ${req.body.definition}`);

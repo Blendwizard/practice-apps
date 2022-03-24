@@ -65,11 +65,25 @@ const deleteOne = (deleted, callback) => {
   })
 }
 
+const searchFor = (query, callback) => {
+
+  var filter = {word: query};
+
+  Word.find(filter, (err, results) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(results);
+    }
+  })
+}
+
 // 3. Export the models
 
 module.exports.save = save;
 module.exports.retrieveWords = retrieveWords;
 module.exports.updateDefinition = updateDefinition;
 module.exports.deleteOne = deleteOne;
+module.exports.searchFor = searchFor;
 
 // 4. Import the models into any modules that need them
