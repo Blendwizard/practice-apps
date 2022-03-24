@@ -23,7 +23,9 @@ app.post('/words', (req, res) => {
   // console.log('made it to post func')
   // console.log(req.body);
 
+  // Incorrect implementation
   database.save(req.body);
+  res.send(201);
 
 })
 
@@ -52,6 +54,17 @@ app.patch('/words', (req, res) => {
     }
   })
 })
+
+
+app.delete('/words', (req, res) => {
+  var deleteWord = req.body.word;
+  console.log(`Deleting word from glossary: ${deleteWord}`);
+  database.deleteOne(deleteWord, (success) => {
+      res.sendStatus(201);
+  })
+})
+
+
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

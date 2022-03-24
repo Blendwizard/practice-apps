@@ -18,13 +18,19 @@ class WordItems extends React.Component {
     this.props.editItem(word, updatedDefinition);
   }
 
+  deleteClick() {
+    console.log(`Deleted "${this.props.word.word}" (non-functional)`);
+    this.props.deleteWord(this.props.word.word);
+  }
+
   render() {
     return (
       <div>
         <li>
           {this.props.word.word}: {this.props.word.definition}
         </li>
-        <button className='edit-btn' onClick={this.editClick.bind(this)}>Edit</button>
+        <button className='edit-btn' style={{'backgroundColor': '#8EEDFB', 'fontSize': '10px'}}onClick={this.editClick.bind(this)}>Edit</button>
+        <button className='delete-btn' style={{'backgroundColor': '#F75633', 'fontSize': '10px' }} onClick={this.deleteClick.bind(this)}>Delete</button>
       </div>
     )
   }

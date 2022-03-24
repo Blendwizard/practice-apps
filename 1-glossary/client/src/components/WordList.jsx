@@ -9,7 +9,7 @@ const WordList = (props) => {
     <div>
       <ul>
         {props.wordList.map((words) => {
-          return <WordItems word={words} editItem={props.editItem}/>
+          return <WordItems key={words._id} word={words} editItem={props.editItem} deleteWord={props.deleteWord}/>
         })}
       </ul>
     </div>

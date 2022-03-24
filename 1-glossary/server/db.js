@@ -55,11 +55,21 @@ const updateDefinition = (word, definition, callback) => {
   })
 }
 
+const deleteOne = (deleted, callback) => {
+  Word.deleteOne({word: deleted}, (err, confirmation) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(confirmation);
+    }
+  })
+}
+
 // 3. Export the models
 
 module.exports.save = save;
 module.exports.retrieveWords = retrieveWords;
 module.exports.updateDefinition = updateDefinition;
-
+module.exports.deleteOne = deleteOne;
 
 // 4. Import the models into any modules that need them

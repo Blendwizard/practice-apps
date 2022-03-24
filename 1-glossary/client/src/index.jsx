@@ -20,6 +20,18 @@ class App extends React.Component {
 
 
 // :::::::::::::::: FUNCTIONS ::::::::::::::::
+
+  deleteWord(word) {
+    var wordBody = {word};
+    fetch('http://localhost:3000/words',
+    {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(wordBody)
+    })
+    .then(this.fetchWords());
+  }
+
   addWord(word) {
     // Need to handle unique ID
     var wordBody = {word : word, definition: ''};
@@ -33,7 +45,7 @@ class App extends React.Component {
   }
 
   editItem(word, newDefinition) {
-    console.log(`Getting ID: ${word} and new definition: ${newDefinition}`);
+    console.log(`Changing: ${word} - New Definition: ${newDefinition}`);
     // Create object
     var updateBody = {word: word, definition: newDefinition};
 
@@ -44,8 +56,6 @@ class App extends React.Component {
       body: JSON.stringify(updateBody)
     })
     .then(this.fetchWords())
-
-
   }
 
   fetchWords() {
@@ -63,7 +73,7 @@ class App extends React.Component {
       <div>
         <h1>GlossaryApp</h1>
         <AddWords addWord={this.addWord.bind(this)}/>
-        <WordList wordList={this.state.listOfWords} editItem={this.editItem.bind(this)}/>
+        <WordList wordList={this.state.listOfWords} editItem={this.editItem.bind(this)} deleteWord={this.deleteWord.bind(this)}/>
       </div>
     )
   }
