@@ -22,15 +22,20 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 
 app.post('/users', (req, res) => {
-  var userInfo = req.body;
-  if (userInfo.name !== '' && userInfo.email !== '' && userInfo.password !== '') {
-    db.insertUser(userInfo, (success) => {
-      res.sendStatus(201);
-    });
-  } else {
-    res.sendStatus(200);
-  }
+4
+  console.log("USER SESSION:::", req.session_id);
 
+
+  // Stores Account Creation data
+
+  // var userInfo = req.body;
+  // if (userInfo.name !== '' && userInfo.email !== '' && userInfo.password !== '') {
+  //   db.insertUser(userInfo, (success) => {
+  //     res.sendStatus(201);
+  //   });
+  // } else {
+  //   res.sendStatus(200);
+  // }
 
 })
 /****
