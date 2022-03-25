@@ -11,9 +11,10 @@ class AccountCreationForm extends React.Component {
     var inputtedEmail = document.getElementById('email-input').value;
     var inputtedPass = document.getElementById('password-input').value;
     // // Renders next form to be filled out
-    // this.props.goToNextForm();
+    this.props.goToNextForm();
+
     // // Submits account details to server through App
-    this.props.submitAccount(inputtedName, inputtedEmail, inputtedPass);
+    // this.props.submitAccount(inputtedName, inputtedEmail, inputtedPass);
   }
 
 
@@ -24,7 +25,7 @@ class AccountCreationForm extends React.Component {
         <h2>Account Creation</h2>
         <input id='name-input' placeholder='name'></input>
         <input id='email-input' placeholder='email'></input>
-        <input id='password-input' placeholder='password'></input>
+        <input type='password' id='password-input' placeholder='password'></input>
         <button onClick={this.nextForm.bind(this)}>Next</button>
         </div>
     )

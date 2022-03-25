@@ -3,7 +3,6 @@ const express = require("express");
 const path = require("path");
 const sessionHandler = require("./middleware/session-handler");
 const logger = require("./middleware/logger");
-
 // Establishes connection to the database on server start
 const db = require("./db");
 
@@ -23,8 +22,16 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 
 app.post('/users', (req, res) => {
-  console.log(req.body);
-  res.sendStatus(201);
+  var userInfo = req.body;
+  if (userInfo.name !== '' && userInfo.email !== '' && userInfo.password !== '') {
+    db.insertUser(userInfo, (success) => {
+      res.sendStatus(201);
+    });
+  } else {
+    res.sendStatus(200);
+  }
+
+
 })
 /****
  *
