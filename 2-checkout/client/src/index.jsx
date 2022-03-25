@@ -8,16 +8,28 @@ class App extends React.Component {
     this.state = {
 
     };
+    this.url = 'http://localhost:3000/';
+
+  }
+  // :::::::: FUNCTIONS ::::::::
+  submitAccount(name, email, password) {
+    var userBody = {name, email, password};
+
+    fetch(this.url + 'users',
+    {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(userBody)
+    })
   }
 
 
   render() {
-
     return (
       <div>
         <h1>Checkout Process</h1>
       <div>
-        <CurrentForm/>
+        <CurrentForm submitAccount={this.submitAccount.bind(this)}/>
       </div>
         <p>
           <code>Page Cookie: {JSON.stringify(document.cookie, undefined, "\t")}</code>
@@ -26,7 +38,5 @@ class App extends React.Component {
     )
   }
 }
-
-
 
 RenderDOM.render(<App/>, document.getElementById('root'));

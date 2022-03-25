@@ -33,7 +33,7 @@ class CurrentForm extends React.Component {
       )
     } else if (this.state.currentForm === 1) {
       return (
-        <AccountCreationForm goToNextForm={this.goToNextForm.bind(this)}/>
+        <AccountCreationForm goToNextForm={this.goToNextForm.bind(this)} submitAccount={this.props.submitAccount.bind(this)}/>
       )
     }
     else if (this.state.currentForm === 2) {
