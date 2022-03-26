@@ -16,11 +16,48 @@ db.connectAsync()
   .then(() =>
   // Expand this table definition as needed:
     db.queryAsync(
-      "CREATE TABLE IF NOT EXISTS responses (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY)"
+      "CREATE TABLE IF NOT EXISTS responses (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, unique_cookie VARCHAR(80))"
     )
   )
   .catch((err) => console.log(err));
 
+
+  db.checkUnique = (session_id, callback) => {
+    console.log("Checking for unique session...");
+    var query = `SELECT * FROM responses WHERE unique_cookie='${session_id}'`;
+    connection.query(query, (err, results) => {
+      if (err) {
+        callback(err);
+      } else {
+        if (results.length !== 0) {
+          if (results[0].unique_cookie === session_id) {
+            console.log(results.unique_cookie, session_id);
+            callback(null, true);
+          }
+        } else {
+          callback(null, false);
+        }
+      }
+    })
+  }
+
+
+
+
+  db.confirmSubmit = (session_id, callback) => {
+    console.log(`Inserting into DB.......: ${session_id}`);
+    var query = `INSERT INTO responses VALUES (null, '${session_id}')`;
+    connection.query(query, (err, results) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, results);
+      }
+    })
+  }
+
+
+  // Not in use currently
   db.insertUser = (user, callback) => {
     var query = 'INSERT INTO users_table VALUES (NULL, ?, ?, ?)';
     var queryArgs = [user.name, user.email, user.password];

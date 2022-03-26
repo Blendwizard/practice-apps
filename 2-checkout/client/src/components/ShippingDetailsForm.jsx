@@ -10,7 +10,7 @@ class ShippingDetailsForm extends React.Component {
     var line1 = document.getElementById('line-1').value;
     var line2 = document.getElementById('line-2').value;
 
-    var address = line1 + '' + line2;
+    var address = line1 + ' ' + line2;
     var city = document.getElementById('city-input').value;
     var state = document.getElementById('state-input').value;
     var zip = document.getElementById('zip-input').value;

@@ -21,10 +21,35 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 
 
+app.get('/', (req, res) => {
+  console.log('???????')
+  db.checkUnique(req.session_id, (err, success) => {
+    console.log("AHHHHH", success)
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      console.log("success is:", success)
+      if (success === true) {
+        console.log(success)
+        res.sendStatus(300);
+      } else {
+        res.sendStatus(200);
+      }
+    }
+  })
+})
+
+
 app.post('/users', (req, res) => {
-4
   console.log("USER SESSION:::", req.session_id);
 
+  db.confirmSubmit(req.session_id, (err, success) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.sendStatus(201);
+    }
+  })
 
   // Stores Account Creation data
 

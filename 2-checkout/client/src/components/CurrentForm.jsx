@@ -28,7 +28,7 @@ class CurrentForm extends React.Component {
     if (!this.state.checkoutStarted) {
       return (
         <div>
-          <button onClick={this.startCheckout.bind(this)}>Check Out</button>
+          <button disabled={!this.props.allowedToSubmit} onClick={this.startCheckout.bind(this)}>Check Out</button>
         </div>
       )
     } else if (this.state.currentForm === 1) {
@@ -46,7 +46,7 @@ class CurrentForm extends React.Component {
       )
     } else {
       return (
-        <ConfirmationForm/>
+        <ConfirmationForm confirmSubmit={this.props.confirmSubmit}/>
       )
     }
 
